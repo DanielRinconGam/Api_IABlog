@@ -1,11 +1,11 @@
 fastapi
 uvicorn[standard]
 sqlalchemy
-pymysql
 python-jose[cryptography]
-passlib[bcrypt]
+passlib[argon2]
 pydantic
 python-dotenv
 google-genai
 email-validator
 argon2-cffi
+psycopg2

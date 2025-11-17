@@ -4,10 +4,11 @@ FROM python:3.11-slim
 # Crear directorio de trabajo
 WORKDIR /app
 
-# Instalar dependencias del sistema (bcrypt, compiladores, MySQL client)
+# Instalar dependencias de sistema necesarias para psycopg2 (PostgreSQL)
 RUN apt-get update && apt-get install -y \
     build-essential \
-    default-mysql-client \
+    libpq-dev \
+    gcc \
     && rm -rf /var/lib/apt/lists/*
 
 # Copiar e instalar dependencias Python
