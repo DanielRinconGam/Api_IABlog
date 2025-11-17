@@ -9,3 +9,4 @@ python-dotenv
 google-genai
 email-validator
 argon2-cffi
+psycopg2-binary
