@@ -9,5 +9,7 @@ class Settings:
 
     GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
     GITHUB_PAGES_ORIGIN = os.getenv("GITHUB_PAGES_ORIGIN", "*")
+    
+    DATABASE_URL: str
 
 settings = Settings()
