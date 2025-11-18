@@ -44,7 +44,8 @@ def login(payload: LoginRequest, db: Session = Depends(get_db)):
 
     token = generate_token_for_user(user)
 
-    return Token(access_token=token)
+    return Token(access_token=token,
+                user_id=user.id)
 
 @router.get("/me")
 def read_me(current_user: User = Depends(get_current_user)):
