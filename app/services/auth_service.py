@@ -3,7 +3,7 @@ from app.models.user import User
 from app.core.security.security import hash_password, verify_password, create_token
 from sqlalchemy.exc import SQLAlchemyError
 
-def register_user(db: Session, email: str, password: str):
+def register_user(db: Session, email: str, password: str, nickname: str):
     """
     Registra un usuario asegurando que el email sea único
     y aplicando hashing Argon2.
@@ -15,7 +15,8 @@ def register_user(db: Session, email: str, password: str):
     try:
         user = User(
             email=email,
-            password_hash=hash_password(password)  # hash Argon2
+            password_hash=hash_password(password),
+            nickname=nickname
         )
 
         db.add(user)
