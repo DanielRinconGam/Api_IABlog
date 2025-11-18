@@ -31,5 +31,5 @@ def all_posts(db: Session = Depends(get_db)):
 def one_post(post_id: int, db: Session = Depends(get_db)):
     post = get_post(db, post_id)
     if not post:
-        raise HTTPException(404, "Post not found")
+        raise HTTPException(404, "Post no encontrado")
     return post

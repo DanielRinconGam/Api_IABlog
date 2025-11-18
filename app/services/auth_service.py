@@ -10,7 +10,7 @@ def register_user(db: Session, email: str, password: str):
     """
     exists = db.query(User).filter(User.email == email).first()
     if exists:
-        raise ValueError("Email already registered")
+        raise ValueError("Este email ya está registrado.")
 
     try:
         user = User(
@@ -26,7 +26,7 @@ def register_user(db: Session, email: str, password: str):
 
     except SQLAlchemyError as e:
         db.rollback()
-        raise RuntimeError(f"Database error while registering user: {str(e)}")
+        raise RuntimeError(f"Error al registrar el usuario: {str(e)}")
 
 
 def authenticate_user(db: Session, email: str, password: str):
