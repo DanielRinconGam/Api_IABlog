@@ -17,7 +17,7 @@ def register(payload: RegisterRequest, db: Session = Depends(get_db)):
     Registra un nuevo usuario con Argon2 y retorna id y email.
     """
     try:
-        user = register_user(db, payload.email, payload.password)
+        user = register_user(db, payload.email, payload.password, payload.nickname)
         return {"id": user.id, "email": user.email}
 
     except ValueError as e:
@@ -50,5 +50,5 @@ def login(payload: LoginRequest, db: Session = Depends(get_db)):
 def read_me(current_user: User = Depends(get_current_user)):
     return {
         "id": current_user.id,
-        "email": current_user.email
+        "usuario": current_user.nickname
     }
