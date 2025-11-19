@@ -52,3 +52,8 @@ def delete_post(db: Session, post_id: int) -> bool:
     db.delete(post)
     db.commit()
     return True
+
+def list_posts_by_user(db: Session, user_id: int):
+    """Obtener todos los posts de un usuario específico ordenados por fecha (más recientes primero)"""
+    return db.query(Post).filter(Post.author_id == user_id).order_by(Post.created_at.desc()).all()
+
