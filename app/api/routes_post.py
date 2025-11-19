@@ -26,6 +26,12 @@ def create_ai_post(payload: PromptRequest,
 def all_posts(db: Session = Depends(get_db)):
     return list_posts(db)
 
+@router.get("/me", response_model=list[PostOut])
+def my_posts(
+    db: Session = Depends(get_db),
+    current_user: User = Depends(get_current_user)
+):
+    return list_posts_by_user(db, current_user.id)
 
 @router.get("/{post_id}", response_model=PostOut)
 def one_post(post_id: int, db: Session = Depends(get_db)):
@@ -34,10 +40,5 @@ def one_post(post_id: int, db: Session = Depends(get_db)):
         raise HTTPException(404, "Post no encontrado")
     return post
 
-@router.get("/me", response_model=list[PostOut])
-def my_posts(
-    db: Session = Depends(get_db),
-    current_user: User = Depends(get_current_user)
-):
-    return list_posts_by_user(db, current_user.id)
+
 
